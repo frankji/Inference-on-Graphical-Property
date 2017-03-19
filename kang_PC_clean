@@ -1,0 +1,50 @@
+# Load Library #
+library('WGCNA')
+library('igraph')
+library('Hmisc')
+library('clusterSim')
+library('clime')
+options(digits=16)
+
+# Load data #
+load('~/Project/hongyu/Project/brain/kang.rda')
+load('~/Project/hongyu/Project/brain/data_all.rda')
+load('~/Project/hongyu/Project/brain/gene_symbol.rda')
+load('~/Project/hongyu/Project/brain/brain_regions.rda')
+load('~/Project/hongyu/Project/brain/time_p.rda')
+load('~/Project/hongyu/Project/brain/pat_mat.rda')
+
+kang <- datET$datETcollapsed
+
+# Get corresponding time period for each column
+ctime <- unlist(mapply(function(x, y) y[colnames(x)], data_all, time_p))
+# Get corresponding regions for each column
+cregion <- unlist(mapply(function(x, y) rep(y, ncol(x)), data_all, brain_regions))
+# Function to get network information
+getnets <- function(datai, pathw, i, j, P = TRUE){
+  group <- rnorm(length(pathw[, i] == 1 | pathw[, j] == 1))
+  X <- datai[pathw[, i] == 1 | pathw[, j] == 1, ]
+  X_r <- rcorr(t(X))
+  X_cor <- X_r$r
+  if(P){
+    X_cor <- X_r$P
+    X_cor[X_cor > 0.05/(0.5*nrow(X_cor)*nrow(X_cor))] <- 0
+  }
+  diag(X_cor) <- 0
+  g <- graph_from_adjacency_matrix(X_cor, mode = 'undirected', weighted = TRUE)
+  group[pathw[, i] == 1] <- 1
+  group[pathw[, j] == 1] <- 3
+  group[pathw[, i] == 1 & pathw[, j] == 1] <- 2
+  group <- group[pathw[, i] == 1 | pathw[, j] == 1]
+  g$group <- group
+  g$cor <- X_r$r
+  g$X <- X
+  return(g)
+}
+
+get_pathway_data <- function(timespan, regionspan, ctime, cregion, path1, path2){
+	dat <- list()
+	for(i in timespan){
+		
+	}
+}

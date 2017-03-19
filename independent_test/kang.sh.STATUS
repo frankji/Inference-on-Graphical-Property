@@ -1,0 +1,8 @@
+2	(0, 0)	1487953466.889813	1487958021.070145	0	7001	c14n07.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean_random_test.R cross_talk STR,HTP,AMY 170 35
+6	(0, 0)	1487953467.718878	1487958041.952924	0	7011	c14n07.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean_random_test.R connected_giant STR,HTP,AMY 170 35
+3	(0, 0)	1487953467.105678	1487958489.533902	0	17275	c14n06.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean_random_test.R cross_talk MD,CBC 170 35
+7	(0, 0)	1487953467.908620	1487959027.877037	0	17305	c14n06.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean_random_test.R connected_giant MD,CBC 170 35
+5	(0, 0)	1487953467.491145	1487962491.519889	0	17295	c14n06.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean_random_test.R connected_giant M1C,S1C,VFC,MFC,DFC,OFC 170 35
+4	(0, 0)	1487953467.290512	1487963416.449654	0	17285	c14n06.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean_random_test.R connected_giant V1C,ITC,IPC,A1C,STC 170 35
+0	(0, 0)	1487953466.506937	1487963442.909115	0	5102	c14n05.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean_random_test.R cross_talk V1C,ITC,IPC,A1C,STC 170 35
+1	(0, 0)	1487953466.737276	1487964274.330715	0	6991	c14n07.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean_random_test.R cross_talk M1C,S1C,VFC,MFC,DFC,OFC 170 35

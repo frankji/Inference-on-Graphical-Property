@@ -1,0 +1,347 @@
+\documentclass[11pt]{article}
+%Created on 4/10/07.
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{enumerate}
+\usepackage[OT1]{fontenc}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb}
+\usepackage{natbib}
+\usepackage[usenames]{color}
+%\usepackage[dvips]{graphicx}
+%\usepackage{bm}
+\usepackage{dsfont,makecell}
+\usepackage{smile}
+\usepackage{multirow}
+
+%\usepackage{makecell}
+\usepackage[colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=blue
+            ]{hyperref}
+            
+          
+\usepackage{mathrsfs}
+
+\usepackage{fullpage}
+\renewcommand{\baselinestretch}{1}
+
+\usepackage{hyperref}
+%\usepackage[protrusion=false,expansion=true]{microtype}
+%\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+\usepackage[    protrusion=true,
+            expansion=true,
+            final,
+            babel
+                ]{microtype}
+\def\##1\#{\begin{align}#1\end{align}}
+\def\$#1\${\begin{align*}#1\end{align*}}
+\usepackage{enumitem}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+% Begin Document
+%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\title{\huge Inferential Analysis for Dynamic Pathway Topology in Spatial-Temporal Transcriptome Dataset}
+\author{}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%
+% Abstract
+%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+  We aim to study the pathway structures in the genomic networks in Brainspan data. We apply the combinatorial inference to the spatial-temporal dataset in order to discover the topological features in the pathways, especially both the inner- and intra-connectivity property among pathways.  Our goal is to find the times period when different pathways become linked and related to the disease. 
+\end{abstract}
+
+
+\section{Introduction}
+
+Spatiotemporal expression profile is believed to be informative in disentangling regulatory roles of genes during development. The brainspan dataset including RNA-seq and microarray expression profile, is  comprehensive in both time span and regions. There have been a wide range of analyses of microarray dataset published by Kang \textit{et al}, like functional-PCA and autism gene discovery. However, data mining towards pathway level is limited compared with others. \\
+Pathways are important building blocks for realization and regulation of biological functions. Besides gene-gene interaction networks or protein-protein interaction networks, pathways are also intertwined to different level in respective developmental stages. It is intriguing to unveil the communication between networks, which is also crucial for better understandings of the importance of spatiotemporal factors.\\
+\noindent
+An interesting scientific discovery would be different pathways, e.g., immunization and dendrites, may work together to influence the disease at certain period of time between infancy and adult. To depict the cross-talk behaviors, interactions in both gene and sub-pathway level, which are located in certain signaling pathways, will be studied cross 8 time windows and 16 regions.
+
+\section{Statistical Model}
+
+\subsection{Mutual information}
+To screen the interactions between pathways, certain metric to measure interactions in pathway level is necessary. The SVD-based methods to describe correlation between gene sets have been widely adopted in modular network research. However, with continuous change of gene expression and different patterns, it is hard to summarize representative modules through spatiotemporal space, which makes it inflexible to deal with gene sets with known labels. \\
+To simplify the description challenge, we first propose to treat data matrix $\bX \in \RR^d$ blockwisely. Namely, $\bX \in \RR^d$ consists of several multivariate normal random variables $\bm{X_i} \in \RR^{|\bm{p}_i|}$, $i\in\{1...k\}$ and $\sum_i |\bm{p}_i|= d$.
+\[\bm{X}=
+\begin{bmatrix}
+\bm{X}_1, ..., \bm{X}_k
+\end{bmatrix}
+\]
+For $k=2$, the mutual information for random variables $X_1$ and $X_2$ can be calculated based on their joint distribution $f(\bX)$, where $X \sim N_d(0, \bm{\Sigma})$. A blockwise representation of $\bm{\Sigma}$ is: 
+\[
+\bm{\Sigma}=
+\begin{bmatrix}
+\bm{\Sigma}_{11}\quad \bm{\Sigma}_{12}\\ \bm{\Sigma}_{21} \quad \bm{\Sigma}_{22}
+\end{bmatrix}
+\]
+Then,
+\[
+\bm{\Sigma}^{-1} = 
+\begin{bmatrix}
+\bm{V}_{11}\quad \bm{V}_{12}\\ \bm{V}_{21} \quad \bm{V}_{22}
+\end{bmatrix}
+\]
+The marginal distribution of $X_1$ and $X_2$ are still normal with zero mean and covariance matrices \{$\bm{\Sigma}_{11}$, $\bm{\Sigma}_{22}$\} respectively. The mutual information between $\bm{X}_1$ and $\bm{X}_2$ is defined as,
+\[
+MI(\bm{X}_1, \bm{X}_2) = D_{KL}(f(\bm{X}_1, \bm{X}_2), f(\bm{X}_1)f(\bm{X}_2)) = \int f(\bm{X}_1, \bm{X}_2)log\frac{f(\bm{X}_1, \bm{X}_2)}{f(\bm{X}_1)f(\bm{X}_2)}
+\]
+After the integral, 
+\[
+MI(X_1, X_2) = \frac{1}{2}(log(\frac{|\bm{\Sigma}_{11}||\bm{\Sigma}_{22}|}{|\bm{\Sigma}|}) + tr(
+\begin{bmatrix}
+0\quad\bm{V}_{12}\\
+\quad\bm{V}_{21}\quad0
+\end{bmatrix}
+\bm{\Sigma}))
+\]
+Because we do not have $\bm{\Sigma}$, we use sample covariance $\hat{\bm{\Sigma}}$ to estimate $\bm{\Sigma}$. Here $|\bm{p}_1| + |\bm{p}_2| = d$, what if $|\bm{p}_1| + |\bm{p}_2|  > d$. A potential extension is to use conditional mutual information to represent the dependence. \\
+Let $\bm{p}_{B} = \bm{p}_1 \cap \bm{p}_2$ and $\bm{p}_{A} = \bm{p}_{B}^C$, then the conditional joint distribution of $\bm{X}_1$ and $\bm{X}_2$ will be
+\[
+\bm{X}|{x_i, i\in\bm{p}_{B}} \sim N(\bm{\mu}_A + \bm{\Sigma}_{AB}\bm{\Sigma}_{BB}^{-1}(\bm{X}_B-\bm{\mu}_B), \bm{\Sigma}_{AA} - \bm{\Sigma}_{AB}\bm{\Sigma}_{BB}^{-1}\bm{\Sigma}_{BA})
+\]
+The dependence between $\bm{X}_1$ and $\bm{X}_2$ is defined as $MI(\bm{X}_1, \bm{X}_2|x_i, i \in \bm{p}_B)$. To make each pair comparable, the dependence should be normalized, hence Pr($MI(\bm{X}_1, \bm{X}_2|x_i, i \in \bm{p}_B) \geq Obs)$ is calculated by permutation and the dependence is in $[0, 1]$ scale ({\color{red} lazy normalization!}). Some other normalization methods reminiscent of pearson correlation coefficient(Strehl and Ghosh, 2002) are still under considerations if we want to incorporate $MI$ in further framework. 
+\subsection{Gaussian graphical model}
+We apply dynamic Gaussian graphical model to the dataset.  Let $\bX \in \RR^d$ be the expression levels
+of $d$ genes in the communities where our pathway of interest belongs to. It is
+ a $d$-dimensional random vector and let $Z\in [0,1]$ be the time covariate random variable.   The time-varying Gaussian graphical model assumes that 
+\begin{equation}             
+\label{Eq:timevarying GGM}
+\bX \mid Z = z \sim N_d(\mathbf{0},\bSigma(z)),           
+\end{equation}
+where $\bSigma (z)$ is the covariance matrix of $\bX$ given $Z=z$. Let $\bTheta (z) = \left(\bSigma(z)\right)^{-1}$ be the inverse covariance matrix at $Z=z$.  It is well-known that $\bTheta (z)$ encodes the conditional dependence relationships among the random variables at time $Z=z$, i.e., $\bTheta_{jk} (z) = 0 $ if and only if the $j$th and $k$th variables are conditionally independent given all of the other variables.
+
+\subsubsection{Inferential Problems}
+
+We aim to explore the following inferential problems. 
+
+\noindent$\bullet$ {\bf Confidence Set of Pathways Connected Giant.} Let $V$ be the vertex set containing all genes in the pathway and $G(z)$ is the graph. Let $S(z)$ be the node set of the largest connected component in $G(z)$. We aim to construct a confidence set $\hat S_{\alpha}(z)$ such that 
+\begin{align*}
+  \lim_{n \rightarrow \infty}\PP\Big(S(z) \subseteq \hat S_{\alpha}(z), \text{ for all } z \in [z_1, z_2]\Big) \ge 1- \alpha.
+\end{align*}
+
+\noindent$\bullet$ {\bf Connectivity between Pathways.} Let $V_1$ and $V_2$ be two vertex sets  belongs to two different pathways and $G_1(z)$ and $G_2(z)$ are the corresponding graphs. The pathway inter-connectivity test in the given time period $[z_1, z_2]$ is
+\begin{align*}
+   H_0:~ &\text{There exists $z_0 \in [z_1, z_2]$ such that there is no edge connecting $G_1(z_0)$ and $G_2(z_0)$};\\
+   H_1:~ &\text{$G_1(z)$ and $G_2(z)$ is connected to each other for all $z \in [z_1, z_2]$}.
+\end{align*}
+Furthermore, we can explore the intensity level of the cross-walk. In specific, let $E_{12}(z)$ be the edge set connecting $G_1(z)$ and $G_2(z)$. The intensity level of the cross-walk is the cardinality $|E_{12}(z)|$. We aim to test 
+\begin{align*}
+   H_0:~ &{|E_{12}(z)| \le N \text{ for all }  z \in [z_1, z_2]};\\
+   H_1:~ &\text{There exists $z^*$ such that $|E_{12}(z^*)| > N$}.
+\end{align*}
+
+\noindent$\bullet$ {\bf Change Point Detection} Let $V_1$ and $V_2$ be two vertex sets  belongs to two different pathways and $G_1(z)$ and $G_2(z)$ are the corresponding graphs. We aim to test whether the connectivity is changed in $[z_1, z_2]$, i.e., for the inter-pathway,
+\begin{align*}
+   H_0:~ &\text{$G(z)$ is disconnected for all $z \in [z_1, z_2]$};\\
+   H_1:~ &\text{There exists $z^*$ such that $G(z)$ is disconnected for $z \in [z_1, z^*]$ and connected for $z \in [z^*, z_1]$};
+\end{align*}
+and for the intra-pathways. 
+\begin{align*}
+   H_0:~ &\text{There is no edge connecting $G_1(z)$ and $G_2(z)$ for all $z \in [z_1, z_2]$};\\
+   H_1:~ &\text{There exists $z^*$ such that $G_1(z)$ and $G_2(z)$ is disconnected for $z \in [z_1, z^*]$ and connected for $z \in [z^*, z_1]$}.
+\end{align*}
+Also, an important question will be estimating the change point $z^*$.
+
+We may also estimate the change point of intensity level. For example, we test
+\begin{align*}
+   H_0:~ &\text{$|E_{12}(z)|$ is constant for all $z \in [z_1, z_2]$};\\
+   H_1:~ &\text{There exists $z^*$ such that the value of $|E_{12}(z)|$ is changed at $z^*$}.
+\end{align*}
+And also we want to estimate the value of $z^*$.
+
+\subsubsection{Inferential Methods}
+
+We begin with inferring a single edge. Let $\bX$ be the random vectors containing genes in two pathway.  
+Let $(\bX_1,Z_1),\ldots,(\bX_n,Z_n)$ be $n$ independent realizations of the pair of random variables $(\bX,Z)$. For simplicity, in the following of our paper, we let $[z_1, z_2] = [0,1]$.
+Let $K : \RR \rightarrow \RR$ be a symmetric kernel function.
+To obtain an estimate for $\bSigma(z)$, we use the kernel smoothed covariance  estimator 
+\begin{equation}
+\label{Eq:estimator}
+\hat{\bSigma} (z) = \frac{\sum_{i\in [n]}  K_h (Z_i-z) \bX_i \bX_i^T}{\sum_{i\in [n]} K_h (Z_i-z)},
+\end{equation}
+where $K_h (Z_i -z ) =  K\left((Z_i -z )/h\right)/h$ and $h>0$ is the bandwidth parameter.
+The choice of kernel is not essential as long as it satisfies some regularity conditions. Let $\hat \bTheta(z) = (\hat \bSigma(z))^{-1}$ or other estimator like glasso and CLIME. Mirror-reflect method is used to address the boundary effects. if the dataset is high dimensional. We consider  the debiased estimator 
+\begin{equation}
+\label{Eq:one-step}
+\hat{\bTheta}_{jk}^d (z) = \hat{\bTheta}_{jk} (z)
+  - \frac{\left(\hat{\bTheta}_j (z)\right)^T \left[ \hat{\bSigma}(z) \hat{\bTheta}_k (z)- \mathbf{e}_k \right]     }{ \left( \hat{\bTheta}_j(z)\right)^T \hat{\bSigma}_j(z)},
+\end{equation}
+To this end, we construct a test statistic based on the de-biased estimator  $\hat{\bTheta}^d_{jk}(z)$ in~(\ref{Eq:one-step}). 
+Let
+\begin{equation}
+\label{Eq:quantile}
+T_E =  \underset{z\in [0,1]}{\sup} \;\underset{(j,k)\in E(z)}{\max} \; 
+\sqrt{nh}\cdot  \left|\hat{\bTheta}_{jk}^d (z) - \bTheta_{jk} (z)\right| \cdot \left(\frac{1}{n}\sum_{i \in [n]} K_h(Z_i-z) \right),
+\end{equation}
+where the subscript $E$ indicates that the maximum is taken over the edges in the set $E(z)$ for each $z$. 
+Since the test statistic~(\ref{Eq:quantile}) involves taking the supreme over $z$ and the maximum over all edges in $E(z)$, it may be difficult to evaluate its distribution.
+To approximate the distribution of the test statistic $T_E$, we generalizes the  Gaussian multiplier bootstrap. We construct the bootstrap statistic as
+\begin{equation}
+\label{Eq:approx test}
+T^B_E = \underset{z\in [0,1]}{\sup} \; \underset{(j,k) \in E(z) }{\max} \;\sqrt{nh}\cdot \left| \frac{1}{n}  \sum_{i\in [n]} \left(\hat{\bTheta}_j (z)\right)^T K_h (Z_i-z) \left( \bX_i \bX_i^T\hat{\bTheta}_k (z)  - \mathbf{e}_k\right) \xi_i\right|,
+\end{equation}
+where  $\xi_1,\ldots,\xi_n \stackrel{\mathrm{i.i.d.}}{\sim} N(0,1)$. 
+We denote the conditional $(1-\alpha)$-quantile of $T^B_E$ given $\{(Z_i,\bX_i)\}_{i\in [n]}$ as 
+%%%%%%%%%%%%%%%%%%%%
+% Quantile
+%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+\label{Eq:quantile estimate}
+c(1-\alpha,E) = \inf \left\{ t\in \RR   \; | \;  P \left( T^B_E \le t    \; |\;  \{(Z_i,\bX_i)\}_{i\in[n]} \right) \ge 1-\alpha     \right\}.
+\end{equation}
+ The quantity $c(1-\alpha,E)$ can be calculated numerically using Monte-Carlo.  
+
+
+Now we are ready to test the problems above. Given a graph $G_0 = (V, E_0)$, we denote all the connected subgraphs of $G_0$ as $\{G_{0\ell} = (V_{0\ell}, E_{0\ell})\}_{\ell=1}^{k'}$. We define the edge set
+\begin{equation}
+ \cC(E_0, \text{Conn}) = \big\{ (u,v) \in E^c_0 \, \big|\, u \in V_{0\ell}, v \in V_{0 \ell'}, \ell \neq \ell' \big\}.
+\end{equation}
+
+\begin{algorithm}[ht]
+\caption{\label{al:giant} Confidence Set of Pathways Connected Giant.}
+\textbf{Input:} $\hat{\bTheta}^d(z)$ for $z\in [0,1]$.  \\
+\textbf{Initialize:} $t=0$; $E_0 (z) = \emptyset$ and connected node sets $\cV(z) = \{\{1\}, \ldots, \{d\}\}$  for $z\in [0,1]$ .  \\
+\textbf{Repeat:} 
+\begin{enumerate}
+\item Compute the critical edge set $\cC(E_{t-1}(z),\text{Conn})$ for $z\in[0,1]$ and the conditional  quantile $c(1-\alpha,\cC(E_{t-1},\text{Conn})) =  \inf \left\{ t\in \RR   \mid P(T^B_{\cC(E_{t-1},\text{Conn})}  \le t \mid \{(Z_i,\bX_i)\}_{i\in[n]})   \ge 1-\alpha     \right\}$,
+where 
+$T^B_{\cC(E_{t-1},\text{Conn})}$ is the bootstrap statistic defined in (\ref{Eq:approx test}) with the maximum taken over the edge set $\cC(E_{t-1}(z),\text{Conn})$.
+
+\item Construct the rejected edge set 
+\[
+\cR(z)= \left\{e\in\cC(E_{t-1}(z),\text{Conn}) \mid \sqrt{nh} \cdot |\hat{\bTheta}_e^d (z)| \cdot \sum_{i\in [n]} K_h(Z_i-z)/n > c (1-\alpha,\cC(E_{t-1},\text{Conn})) \right\}.
+\]
+
+\item Update the rejected edge set $E_t (z) \gets E_{t-1}(z) \cup \cR(z)$ for $z\in [0,1]$.
+\item $t \gets t+1$.
+\end{enumerate}
+\textbf{Until:} $E_t(z)=E_{t-1}(z)$ for $z\in [0,1]$.
+
+\textbf{Output:} $\hat S_{\alpha}(z)$ be the vertex set of largest connected subgraph of $E_t(z)$.
+\end{algorithm}
+
+
+ \begin{algorithm}[t]
+\caption{Confidence Set of Pathways Connected Giant (Detailed)}\label{al:conn}
+\begin{algorithmic}
+\STATE \textbf{Input:} $\hat{\bTheta}^d(z)$ for $z\in [0,1]$. 
+\STATE We discretize the continuous interval $[0,1]$ into $z_1, \ldots, z_m$
+\STATE Initialize $t=0$; $E_0 (z) = \emptyset$ and connected node sets $\cV(z) = \{\{1\}, \ldots, \{d\}\}$  for $z\in [0,1]$ .  
+\REPEAT
+\STATE $t \gets t+1$;
+\FOR{$z \in \{z_1, \ldots, z_m\}$}
+\STATE Find the critical edge set $\cC_t(z) = \big\{ (u,v) \in E^c_{t-1} \, \big|\, u \in S, v \in T,  S \neq T \text{ and } S, T\in \cV(z) \big\}$.
+ \STATE Update the rejected set: $\cR_t(z)=\{e\in \cC_{t}(z)\,|\, \sqrt{nh} \cdot |\hat{\bTheta}_e^d (z)| \cdot \sum_{i\in [n]} K_h(Z_i-z)/n  > c(\alpha, \cC_{t}(z))\}$;
+ \STATE $E_t(z) \gets E_{t-1}(z)  \cup \cR_t(z)$;
+  \STATE Update the connected node sets $\cV(z)$:
+  \FOR {$(u,v) \in \cR_{t}(z)$}
+  \IF {$u, v$ belong to different node sets $S, T$ in $\cV(z)$, i.e., $u \in S, v \in T$ and $S\neq T$}
+  \STATE $\cV(z) \gets (\cV(z)\backslash\{S, T\}) \cup \{S\cup T\}$
+  \ENDIF
+  \ENDFOR
+    \ENDFOR
+ \UNTIL{$\cR_t(z) = \emptyset$ for all $z\in \{z_1, \ldots, z_m\}$.}
+  \STATE \textbf{Output:} $\hat S_{\alpha}(z)$ be the vertex set of largest connected subgraph of $E_t(z)$.
+\end{algorithmic}
+\end{algorithm}
+
+
+
+  
+Now we discuss the connectivity test between pathways. We aim to test the intensity level of the cross-walk is the cardinality $|E_{12}(z)|$
+\begin{align*}
+   H_0:~ &{|E_{12}(z)| \le N \text{ for all }  z \in [z_1, z_2]};\\
+   H_1:~ &\text{There exists $z^*$ such that $|E_{12}(z^*)| > N$}.
+\end{align*}
+We can see that if $N = 0$, the test above is a test for whether there exists a cross-walk.
+
+
+\begin{algorithm}[ht]
+\caption{\label{al:cross-walk} Cross-walk Test}
+\textbf{Input:} $\hat{\bTheta}^d(z)$ for $z\in [0,1]$.  \\
+\textbf{Initialize:} $t=1$; $E_0 (z) = V_1 \times V_2$ for $z\in [0,1]$.  \\
+\textbf{Repeat:} 
+\begin{enumerate}
+\item Compute the conditional  quantile 
+\[
+c(1-\alpha, E_{t-1}) =  \inf \left\{ t\in \RR   \mid P(T^B_{E_{t-1}}  \le t \mid \{(Z_i,\bX_i)\}_{i\in[n]})   \ge 1-\alpha     \right\}.
+\]
+
+\item Construct the rejected edge set 
+\[
+\cR(z)= \Big\{e\in E_{t-1} \mid \sqrt{nh} \cdot |\hat{\bTheta}_e^d (z)| \cdot \sum_{i\in [n]} K_h(Z_i-z)/n > c (1-\alpha,E_{t-1}) \Big\}.
+\]
+
+\item Update the rejected edge set $E_t (z) \gets E_{t-1}(z) \backslash \cR(z)$ for $z\in [0,1]$.
+\item $t \gets t+1$.
+\end{enumerate}
+\textbf{Until:} $E_t(z)=E_{t-1}(z)$ for $z\in [0,1]$ or $|E_t(z)| > N$ for some $z \in [0,1]$.
+
+\textbf{Output:} Reject $H_0$ if $|E_t(z)| > N$ for some $z \in [0,1]$.
+\end{algorithm}
+
+\clearpage
+
+\section{Results}
+Notch and EGFR signaling pathways have been reported to be connected for the regulation of neural
+stem cell number and self-renewal(Aguirre, Rubio and Gallo, 2010). We are interested in how genes and sub signaling pathways related to Notch and EGFR interact with each other in developmental stages to adulthood over brain regions. Table 1 is the sub-pathways of Notch and EGFR signaling, in which only sub-pathways at the end of pathway hierarchy are selected. There are 103 genes of Notch signaling in the dataset, 343 for EGFR and 17 in both. 
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlllr}
+  \hline
+ & Description & ID & Pathway & Genes \\ 
+  \hline
+1 & Constitutive Signaling by AKT1 E17K in Cancer & 5674400 & EGFR & 24 \\ 
+  2 & NOTCH1 Intracellular Domain Regulates Transcription & 2122947 & Notch & 43 \\ 
+  3 & Constitutive Signaling by NOTCH1 PEST Domain Mutants & 2644606 & Notch & 52 \\ 
+  4 & Constitutive Signaling by NOTCH1 HD+PEST Domain Mutants & 2894862 & Notch & 52 \\ 
+  5 & Pre-NOTCH Transcription and Translation & 1912408 & Notch & 29 \\ 
+  6 & Regulation of RAS by GAPs & 5658442 & EGFR & 61 \\ 
+  7 & Signaling by RAS mutants & 6802949 & EGFR & 48 \\ 
+  8 & Activated NOTCH1 Transmits Signal to the Nucleus & 2122948 & Notch & 26 \\ 
+  9 & MAP2K and MAPK activation & 5674135 & EGFR & 38 \\ 
+  10 & Signaling by moderate kinase activity BRAF mutants & 6802946 & EGFR & 38 \\ 
+  11 & Signaling by high-kinase activity BRAF mutants & 6802948 & EGFR & 34 \\ 
+  12 & Paradoxical activation of RAF signaling by kinase inactive BRAF & 6802955 & EGFR & 38 \\ 
+  13 & EGFR downregulation & 182971 & EGFR & 23 \\ 
+  14 & SHC1 events in ERBB2 signaling & 1250196 & EGFR & 21 \\ 
+  15 & Constitutive Signaling by Aberrant PI3K in Cancer & 2219530 & EGFR & 62 \\ 
+  16 & PI5P, PP2A and IER3 Regulate PI3K/AKT Signaling & 6811558 & EGFR & 84 \\ 
+  17 & FRS-mediated FGFR1 signaling & 5654693 & EGFR & 23 \\ 
+  18 & SHC-mediated cascade:FGFR2 & 5654699 & EGFR & 25 \\ 
+  19 & FRS-mediated FGFR2 signaling & 5654700 & EGFR & 24 \\ 
+  20 & FRS-mediated FGFR4 signaling & 5654712 & EGFR & 21 \\ 
+  21 & SHC-mediated cascade:FGFR4 & 5654719 & EGFR & 22 \\ 
+  22 & PI-3K cascade:FGFR1 & 5654689 & EGFR & 21 \\ 
+  23 & PI-3K cascade:FGFR2 & 5654695 & EGFR & 22 \\ 
+  24 & SHC-mediated cascade:FGFR1 & 5654688 & EGFR & 21 \\ 
+  25 & RAF activation & 5673000 & EGFR & 24 \\ 
+   \hline
+\end{tabular}
+\caption{Sub-pathways of Notch and EGFR signaling} 
+\end{table}\bibliographystyle{ims}
+\bibliography{reference}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

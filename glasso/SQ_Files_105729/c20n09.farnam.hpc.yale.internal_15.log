@@ -1,0 +1,6 @@
+2017-02-27 10:42:30,200 INFO Wrapper script running on c20n09.farnam.hpc.yale.internal (pid: 27791, 15).
+2017-02-27 10:42:30,201 INFO Opened workspace SENTINEL_dj333_Mon_Feb_27_10:42:29_2017_kang.sh on c20n05.farnam.hpc.yale.internal at 43495.
+2017-02-27 10:42:32,923 INFO Fetched task 3: /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R cross_talk MD,CBC 170 35
+2017-02-27 10:42:32,951 INFO Task 3: child 27798 started at 1488210152.950140
+2017-02-27 12:53:37,543 INFO Task 3: pid 27798 returned 0.
+2017-02-27 13:18:08,094 INFO Wrapper script exiting on c20n09.farnam.hpc.yale.internal (pid: 27791, 15), "engine 15 task" after 1 tasks.

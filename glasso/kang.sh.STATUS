@@ -1,0 +1,16 @@
+10	(0, 0)	1488210154.329539	1488210281.920595	0	7793	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant STR,HTP,AMY 170 170
+11	(0, 0)	1488210154.529793	1488210283.382056	0	7803	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant MD,CBC 170 170
+8	(0, 0)	1488210153.928419	1488210500.432138	0	7773	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant V1C,ITC,IPC,A1C,STC 170 170
+9	(0, 0)	1488210154.128991	1488210559.982436	0	7783	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant M1C,S1C,VFC,MFC,DFC,OFC 170 170
+14	(0, 0)	1488210155.122602	1488213535.156048	0	7833	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant STR,HTP,AMY 35 35
+15	(0, 0)	1488210155.323154	1488213870.173038	0	7843	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant MD,CBC 35 35
+12	(0, 0)	1488210154.717465	1488214325.292743	0	7813	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant V1C,ITC,IPC,A1C,STC 35 35
+13	(0, 0)	1488210154.922263	1488215505.237764	0	7823	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant M1C,S1C,VFC,MFC,DFC,OFC 35 35
+2	(0, 0)	1488210152.728004	1488216627.400950	0	18038	c20n06.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R cross_talk STR,HTP,AMY 170 35
+6	(0, 0)	1488210153.527457	1488216659.434849	0	7753	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant STR,HTP,AMY 170 35
+7	(0, 0)	1488210153.737159	1488217305.100193	0	7763	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant MD,CBC 170 35
+3	(0, 0)	1488210152.950140	1488218017.543314	0	27798	c20n09.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R cross_talk MD,CBC 170 35
+1	(0, 0)	1488210152.538516	1488218029.550596	0	6953	c20n07.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R cross_talk M1C,S1C,VFC,MFC,DFC,OFC 170 35
+5	(0, 0)	1488210153.349169	1488218068.223044	0	7743	c20n08.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant M1C,S1C,VFC,MFC,DFC,OFC 170 35
+0	(0, 0)	1488210152.367107	1488218385.204498	0	13929	c20n05.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R cross_talk V1C,ITC,IPC,A1C,STC 170 35
+4	(0, 0)	1488210153.125467	1488219487.865127	0	27808	c20n09.farnam.hpc.yale.internal	/ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant V1C,ITC,IPC,A1C,STC 170 35

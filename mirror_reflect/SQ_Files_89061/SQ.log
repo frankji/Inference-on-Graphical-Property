@@ -1,0 +1,79 @@
+2017-02-27 00:55:05.619 INFO Started personal networkspace server: c22n02.farnam.hpc.yale.internal 45801 36796
+2017-02-27 00:55:05.619 INFO Control process is 15705.
+2017-02-27 00:55:05.619 INFO sqDedicated run started using nws server c22n02.farnam.hpc.yale.internal 45801
+2017-02-27 00:55:05.619 INFO Sentinel key: SENTINEL_dj333_Mon_Feb_27_00:55:05_2017_kang.sh
+2017-02-27 00:55:05.621 INFO Launching workers with command: srun /ysm-gpfs/apps/software/Python/2.7.11-foss-2016a/bin/python /ysm-gpfs/apps/software/SimpleQueue/3.1/SQDedWrapper.py True /ysm-gpfs/project/dj333/hongyu/Project/Pathway_Connectiviy/mirror_reflect/SQ_Files_89061 SENTINEL_dj333_Mon_Feb_27_00:55:05_2017_kang.sh c22n02.farnam.hpc.yale.internal 45801
+2017-02-27 00:55:05.627 INFO launcher pid: 15708
+2017-02-27 00:55:09.524 INFO Nodelist: ['c22n02.farnam.hpc.yale.internal']
+2017-02-27 00:55:09.541 INFO Launching on 1 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R cross_talk V1C,ITC,IPC,A1C,STC 170 35
+2017-02-27 00:55:09.542 INFO Fetching extra data for task 0 from workspace.
+2017-02-27 00:55:09.741 INFO Launching on 13 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R cross_talk M1C,S1C,VFC,MFC,DFC,OFC 170 35
+2017-02-27 00:55:09.742 INFO Fetching extra data for task 1 from workspace.
+2017-02-27 00:55:09.941 INFO Launching on 8 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R cross_talk STR,HTP,AMY 170 35
+2017-02-27 00:55:09.942 INFO Fetching extra data for task 2 from workspace.
+2017-02-27 00:55:10.142 INFO Launching on 6 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R cross_talk MD,CBC 170 35
+2017-02-27 00:55:10.143 INFO Fetching extra data for task 3 from workspace.
+2017-02-27 00:55:10.342 INFO Launching on 2 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant V1C,ITC,IPC,A1C,STC 170 35
+2017-02-27 00:55:10.343 INFO Fetching extra data for task 4 from workspace.
+2017-02-27 00:55:10.542 INFO Launching on 0 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant M1C,S1C,VFC,MFC,DFC,OFC 170 35
+2017-02-27 00:55:10.543 INFO Fetching extra data for task 5 from workspace.
+2017-02-27 00:55:10.743 INFO Launching on 4 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant STR,HTP,AMY 170 35
+2017-02-27 00:55:10.744 INFO Fetching extra data for task 6 from workspace.
+2017-02-27 00:55:10.943 INFO Launching on 14 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant MD,CBC 170 35
+2017-02-27 00:55:10.944 INFO Fetching extra data for task 7 from workspace.
+2017-02-27 00:55:11.143 INFO Launching on 10 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant V1C,ITC,IPC,A1C,STC 170 170
+2017-02-27 00:55:11.144 INFO Fetching extra data for task 8 from workspace.
+2017-02-27 00:55:11.344 INFO Launching on 7 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant M1C,S1C,VFC,MFC,DFC,OFC 170 170
+2017-02-27 00:55:11.345 INFO Fetching extra data for task 9 from workspace.
+2017-02-27 00:55:11.544 INFO Launching on 12 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant STR,HTP,AMY 170 170
+2017-02-27 00:55:11.545 INFO Fetching extra data for task 10 from workspace.
+2017-02-27 00:55:11.744 INFO Launching on 11 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant MD,CBC 170 170
+2017-02-27 00:55:11.745 INFO Fetching extra data for task 11 from workspace.
+2017-02-27 00:55:11.945 INFO Launching on 9 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant V1C,ITC,IPC,A1C,STC 35 35
+2017-02-27 00:55:11.948 INFO Fetching extra data for task 12 from workspace.
+2017-02-27 00:55:12.145 INFO Launching on 3 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant M1C,S1C,VFC,MFC,DFC,OFC 35 35
+2017-02-27 00:55:12.146 INFO Fetching extra data for task 13 from workspace.
+2017-02-27 00:55:12.345 INFO Launching on 5 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant STR,HTP,AMY 35 35
+2017-02-27 00:55:12.347 INFO Fetching extra data for task 14 from workspace.
+2017-02-27 00:55:12.546 INFO Launching on 15 (c22n02.farnam.hpc.yale.internal): /ysm-gpfs/home/dj333/softwares/R/bin/Rscript kang_PC_clean.R connected_giant MD,CBC 35 35
+2017-02-27 00:55:12.548 INFO Fetching extra data for task 15 from workspace.
+2017-02-27 00:55:12.746 INFO All tasks launched.
+2017-02-27 00:55:12.746 INFO Draining pool.
+2017-02-27 00:58:18.590 INFO Extra data for task 10 from workspace: (0, 0) 1488174911.546565 1488175098.503440 0 16111 c22n02.farnam.hpc.yale.internal
+2017-02-27 00:58:18.591 INFO Releasing 12 (c22n02.farnam.hpc.yale.internal) for task 10 (True).
+2017-02-27 00:58:28.418 INFO Extra data for task 11 from workspace: (0, 0) 1488174911.746875 1488175108.362929 0 16122 c22n02.farnam.hpc.yale.internal
+2017-02-27 00:58:28.419 INFO Releasing 11 (c22n02.farnam.hpc.yale.internal) for task 11 (True).
+2017-02-27 01:00:49.633 INFO Extra data for task 8 from workspace: (0, 0) 1488174911.145840 1488175249.458158 0 16089 c22n02.farnam.hpc.yale.internal
+2017-02-27 01:00:49.634 INFO Releasing 10 (c22n02.farnam.hpc.yale.internal) for task 8 (True).
+2017-02-27 01:01:12.106 INFO Extra data for task 9 from workspace: (0, 0) 1488174911.346016 1488175271.911426 0 16100 c22n02.farnam.hpc.yale.internal
+2017-02-27 01:01:12.107 INFO Releasing 7 (c22n02.farnam.hpc.yale.internal) for task 9 (True).
+2017-02-27 02:12:32.283 INFO Extra data for task 14 from workspace: (0, 0) 1488174912.348474 1488179552.106093 0 16156 c22n02.farnam.hpc.yale.internal
+2017-02-27 02:12:32.284 INFO Releasing 5 (c22n02.farnam.hpc.yale.internal) for task 14 (True).
+2017-02-27 02:21:15.237 INFO Extra data for task 15 from workspace: (0, 0) 1488174912.552533 1488180075.200195 0 16167 c22n02.farnam.hpc.yale.internal
+2017-02-27 02:21:15.238 INFO Releasing 15 (c22n02.farnam.hpc.yale.internal) for task 15 (True).
+2017-02-27 02:58:13.970 INFO Extra data for task 13 from workspace: (0, 0) 1488174912.147375 1488182293.956718 0 16144 c22n02.farnam.hpc.yale.internal
+2017-02-27 02:58:13.972 INFO Releasing 3 (c22n02.farnam.hpc.yale.internal) for task 13 (True).
+2017-02-27 02:59:30.592 INFO Extra data for task 12 from workspace: (0, 0) 1488174911.949530 1488182370.488029 0 16133 c22n02.farnam.hpc.yale.internal
+2017-02-27 02:59:30.593 INFO Releasing 9 (c22n02.farnam.hpc.yale.internal) for task 12 (True).
+2017-02-27 03:09:35.915 INFO Extra data for task 2 from workspace: (0, 0) 1488174909.943611 1488182975.757578 0 16023 c22n02.farnam.hpc.yale.internal
+2017-02-27 03:09:35.916 INFO Releasing 8 (c22n02.farnam.hpc.yale.internal) for task 2 (True).
+2017-02-27 03:34:14.319 INFO Extra data for task 3 from workspace: (0, 0) 1488174910.144147 1488184454.241755 0 16034 c22n02.farnam.hpc.yale.internal
+2017-02-27 03:34:14.321 INFO Releasing 6 (c22n02.farnam.hpc.yale.internal) for task 3 (True).
+2017-02-27 03:35:24.717 INFO Extra data for task 7 from workspace: (0, 0) 1488174910.951153 1488184524.693888 0 16078 c22n02.farnam.hpc.yale.internal
+2017-02-27 03:35:24.718 INFO Releasing 14 (c22n02.farnam.hpc.yale.internal) for task 7 (True).
+2017-02-27 03:52:46.976 INFO Extra data for task 6 from workspace: (0, 0) 1488174910.745371 1488185566.840359 0 16067 c22n02.farnam.hpc.yale.internal
+2017-02-27 03:52:46.977 INFO Releasing 4 (c22n02.farnam.hpc.yale.internal) for task 6 (True).
+2017-02-27 03:54:45.904 INFO Extra data for task 1 from workspace: (0, 0) 1488174909.743301 1488185685.778447 0 16012 c22n02.farnam.hpc.yale.internal
+2017-02-27 03:54:45.905 INFO Releasing 13 (c22n02.farnam.hpc.yale.internal) for task 1 (True).
+2017-02-27 04:00:58.570 INFO Extra data for task 4 from workspace: (0, 0) 1488174910.344268 1488186058.405932 0 16045 c22n02.farnam.hpc.yale.internal
+2017-02-27 04:00:58.571 INFO Releasing 2 (c22n02.farnam.hpc.yale.internal) for task 4 (True).
+2017-02-27 04:09:16.448 INFO Extra data for task 0 from workspace: (0, 0) 1488174909.543194 1488186556.421020 0 16001 c22n02.farnam.hpc.yale.internal
+2017-02-27 04:09:16.449 INFO Releasing 1 (c22n02.farnam.hpc.yale.internal) for task 0 (True).
+2017-02-27 04:56:10.481 INFO Extra data for task 5 from workspace: (0, 0) 1488174910.544933 1488189370.432324 0 16056 c22n02.farnam.hpc.yale.internal
+2017-02-27 04:56:10.482 INFO Releasing 0 (c22n02.farnam.hpc.yale.internal) for task 5 (True).
+2017-02-27 04:56:10.482 INFO Notify drainCV.
+2017-02-27 04:56:10.482 INFO runTasks has finished.
+2017-02-27 04:56:10.482 INFO Remaining tasks dumped to kang.sh.REMAINING.
+2017-02-27 04:56:10.483 INFO Run completed.
+2017-02-27 04:56:10.488 INFO Received signal 15, but already shutting down.
+2017-02-27 04:56:10.488 INFO Falling off the end of the world.
